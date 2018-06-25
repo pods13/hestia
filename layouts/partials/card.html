@@ -1,0 +1,12 @@
+<article class="col-xs-12 col-ms-10 col-ms-offset-1 col-sm-8 col-sm-offset-2 col-md-4 hestia-blog-item">
+    <div class="card card-plain card-blog">
+        {{ partial "card/card-image.html" . }}
+        <div class="content">
+            {{$category := index .Params.categories 0}}
+            {{$categoryUrl := $category | urlize }}
+            <h6 class="category"><a href="/{{$categoryUrl}}" title="View all warframe posts in {{$category}}">{{$category}}</a></h6>
+            <h4 class="card-title"><a class="blog-item-title-link" href="{{ .Permalink }}" title="{{ .Title }}" rel="bookmark">{{ .Title }}</a></h4>
+            {{ partial "card/card-description.html" . }}
+        </div>
+    </div>
+</article>

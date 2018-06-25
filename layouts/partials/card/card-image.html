@@ -1,0 +1,5 @@
+<div class="card-image">
+    {{$image := split .Params.image "." }}
+    {{$featureImageSrc := delimit $image "-360x240." }}
+    <a href="{{ .Permalink }}" title="{{ .Title }}"><img class="attachment-hestia-blog size-hestia-blog wp-post-image" width="360" height="240" src="{{ $featureImageSrc }}" title="{{ .Title }}" alt="{{ .Title }}" /></a>
+</div>

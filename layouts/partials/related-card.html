@@ -1,0 +1,12 @@
+<div class="col-md-4">
+	<div class="card card-blog">
+        {{ partial "card/card-image.html" . }}
+		<div class="content">
+            {{$category := index .Params.categories 0}}
+            {{$categoryUrl := $category | urlize }}
+			<h6 class="category text-info"><a href="/{{$categoryUrl}}" title="View all posts in {{$category}}">{{$category}}</a></h6>
+			<h4 class="card-title"><a class="blog-item-title-link" href="{{ .RelPermalink }}" title="{{ .Title }}" rel="bookmark">{{ .Title }}</a></h4>
+            {{ partial "card/card-description.html" . }}
+		</div>
+	</div>
+</div>

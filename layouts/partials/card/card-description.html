@@ -1,0 +1,7 @@
+<div class="card-description">
+    {{ if .Description }} 
+        <p>{{ .Description | markdownify }}</p>
+    {{else}}
+        <p>{{ .Summary | plainify | safeHTML }}{{ if .Truncated }} {{end}} </p>
+    {{end}}
+</div>

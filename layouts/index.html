@@ -1,0 +1,18 @@
+{{ define "main" }}
+	<section class="hestia-blogs" id="blog" data-sorder="hestia_blog">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2 text-center">
+					<h2 class="hestia-title">Latest Posts</h2>
+				</div>
+			</div>
+			<div class="hestia-blog-content">
+				<div class="row" data-aos="fade-up">
+					{{ range first 12 (where .Site.Pages "Params.layout" "post") }}
+						{{partial "card.html" .}}
+					{{ end }}
+				</div>
+			</div>
+		</div>
+	</section>
+{{ end }}

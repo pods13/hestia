@@ -1,0 +1,74 @@
+{{ define "custom-styles" }}
+<style type="text/css">
+	h1.title {
+		font-size: 202px;
+		color: rgba(0,0,0,.84);
+		font-weight: 600;
+	}
+
+	h2.title {
+		color: rgba(0, 0, 0, 0.3);
+		font-size: 77px;
+		line-height: 77px;
+		padding-right: 20px;
+		padding-top: 100px;
+	}
+
+	p.sub-title {
+		color: rgba(0, 0, 0, 0.3);
+		font-size: 16px;
+		font-weight: 500;	
+	}
+
+	@media (max-width: 893px) {
+		h1.title { 
+			font-size: 152px;
+			margin: 0;
+		}
+		h2.title {
+			font-size: 38px;
+			padding-top: 0;
+			margin: 0;
+		}
+	}
+</style>
+{{ end }}
+
+{{ define "body" }}
+
+<div class="wrapper">
+	<header class="header">
+	  {{ partial "nav.html" . }}
+	</header>
+	<div class="main">
+        <div class="hestia-blogs">
+            <div class="container">
+                <div class="row">
+                	<div class="col-md-6">
+						<h1 class="title">404</h1>
+			        </div>
+			        <div class="col-md-6">
+						<h2 class="title">We couldn’t find this page.</h2>
+			        </div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<p class="sub-title">Maybe it’s out there, somewhere...</p>
+						<p class="sub-title">You can always find insightful stories on our <a href="{{ .Site.BaseURL }}" title="{{ .Site.Title }}">homepage</a>.</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<h2 class="hestia-title text-left">Latest posts you might be interested in</h2>
+						<div class="row">
+							{{ range first 3 (where .Site.Pages "Params.layout" "post") }}
+								{{ partial "related-card.html" . }}
+							{{ end }}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>		
+	</div>
+</div>
+{{ end }}

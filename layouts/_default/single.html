@@ -1,0 +1,62 @@
+{{ define "title" }}
+  {{ .Params.seoTitle | default .Title }}
+{{ end }}
+{{ define "custom-styles" }}
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous" />
+{{ end }}
+{{ define "bodyClasses" }}single single-post single-format-standard blog-post{{ end }}
+{{ define "header" }}
+  <div class="boxed-layout-header page-header header-small" id="primary">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-10 col-md-offset-1 text-center">
+                  <h1 class="hestia-title">{{ .Title }}</h1>
+                  <p id="breadcrumbs-category">
+                    <span xmlns:v="http://rdf.data-vocabulary.org/#">
+                      {{$category := index .Params.categories 0}}
+                      {{$categoryUrl := $category | urlize }}
+                      <span typeof="v:Breadcrumb"><a href="{{ $.Site.BaseURL }}" rel="v:url" property="v:title">{{ .Site.Title }}</a> » 
+                      <span rel="v:child" typeof="v:Breadcrumb"><a href="/{{ $categoryUrl }}" title="{{ $category }}" rel="v:url" property="v:title">{{ $category }}</a> » 
+                      <span class="breadcrumb_last">{{ .Title }}</span>
+                    </span>
+                    <h4 class="author">Published by <a class="vcard author" href="{{ .PublishDate }}">
+                      <strong class="fn">{{ .Params.Author }}</strong></a> on 
+                      <time class="date updated published" datetime="">{{ .PublishDate.Format "January 2, 2006" }}</time>
+                    </h4>
+                  </p>
+              </div>
+          </div>
+      </div>
+      <div class="header-filter" data-parallax="active" style="background-image: url({{ .Params.image }})"></div>
+  </div>
+{{ end }}
+{{ define "main" }}
+  <div class="blog-post blog-post-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 single-post-wrap">
+                <article class="section section-text">{{ .Content }}</article>
+                <div class="section section-blog-info">
+                  <div class="row">
+                      <div class="col-md-6">
+                          {{$category := index .Params.categories 0}}
+                          {{$categoryUrl := $category | urlize }}
+                          <div class="entry-categories">Category: <span class="label label-primary"><a href="/{{ $categoryUrl }}">{{ $category }}</a></span></div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="entry-social">
+                          <a class="btn btn-just-icon btn-round btn-facebook" target="_blank" rel="tooltip" data-original-title="Share on Facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink }}"><i class="fab fa-facebook"></i></a>
+                          <a class="btn btn-just-icon btn-round btn-twitter" target="_blank" rel="tooltip" data-original-title="Share on Twitter" href="https://twitter.com/home?status={{ .Title }} - {{ .Permalink }}"><i class="fab fa-twitter"></i></a>
+                          <a class="btn btn-just-icon btn-round btn-google" target="_blank" rel="tooltip" data-original-title="Share on Google+" href="https://plus.google.com/share?url={{ .Permalink }}"><i class="fab fa-google"></i></a></div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            {{ partial "sidebar.html" }}
+        </div>
+    </div>
+  </div>
+{{ end }}
+{{ define "after-main"}}
+  {{ partial "related-posts.html" . }}
+{{ end }}
