@@ -14,7 +14,9 @@
 
 		<meta name="viewport" content="width=device-width,minimum-scale=1">
 		<link rel="dns-prefetch" href="//fonts.googleapis.com">
-		
+
+		{{ partial "seo/canonical.html" . }}
+
 		{{ partial "site-styles.html" }}
 		{{ block "custom-styles" . }}{{ end}}
 
