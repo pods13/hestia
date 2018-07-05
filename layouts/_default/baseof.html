@@ -18,16 +18,16 @@
 		{{ partial "seo/canonical.html" . }}
 
 		{{ partial "site-styles.html" }}
-		{{ block "custom-styles" . }}{{ end}}
+		{{- block "custom-styles" . -}}{{- end -}}
 
-		{{ block "favicon" . }}
-			{{ partial "site-favicon.html" . }}
-		{{ end }}
+		{{- block "favicon" . -}}
+			{{- partial "site-favicon.html" . -}}
+		{{- end -}}
 
 	    {{ template "_internal/opengraph.html" . }}
 	    {{ template "_internal/google_news.html" . }}
-	    {{ template "_internal/schema.html" . }}
-	    {{ template "_internal/twitter_cards.html" . }}
+	    {{- template "_internal/schema.html" . -}}
+		{{- partial "seo/twitter_cards.html" . -}}
 	    {{ template "_internal/google_analytics.html" . }}
 	    {{ partial "google_adsense.html" . }}
 	</head>
