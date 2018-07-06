@@ -3,11 +3,10 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		{{/* NOTE: the Site's title, and if there is a page title, that is set too */}}
 		<title>
-			{{ block "title" . }}
-				{{ .Site.Params.seoTitle | default .Site.Title }}
-			{{ end }}
+		{{- block "title" . -}}
+			{{ .Site.Params.seoTitle | default .Site.Title }}
+		{{- end -}}
 		</title>
 		<meta name="HandheldFriendly" content="True">
 		<meta name="MobileOptimized" content="320">
@@ -24,8 +23,8 @@
 			{{- partial "site-favicon.html" . -}}
 		{{- end -}}
 
-	    {{ template "_internal/opengraph.html" . }}
-	    {{ template "_internal/google_news.html" . }}
+		{{- partial "seo/opengraph.html" . -}}
+	    {{- template "_internal/google_news.html" . -}}
 	    {{- template "_internal/schema.html" . -}}
 		{{- partial "seo/twitter_cards.html" . -}}
 	    {{ template "_internal/google_analytics.html" . }}
