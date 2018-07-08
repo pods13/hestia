@@ -17,7 +17,7 @@
 							</div>
 					</div>
 			</div>
-			<div class="header-filter" data-parallax="active" style="background-image: url(https://warframeblog.com/wp-content/uploads/2018/06/warframeblog.jpg)"></div>
+			<div class="header-filter" data-parallax="active" style="background-image: url({{ .Params.image | default .Site.Params.image }})"></div>
 	</div>
 {{ end }}
 {{ define "main" }}
