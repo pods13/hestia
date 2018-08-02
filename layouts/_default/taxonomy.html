@@ -1,5 +1,8 @@
 {{- define "title" -}}
-  {{ .Params.seoTitle | default .Title }}
+{{ .Params.seoTitle | default .Title }}
+{{- if gt $.Paginator.PageNumber 1 -}}
+, Page {{ $.Paginator.PageNumber }} of {{ $.Paginator.TotalPages }} 
+{{- end -}}
 {{- end -}}
 {{ define "bodyClasses" }}archive category{{ end }}
 {{ define "header" }}
