@@ -10,8 +10,9 @@
             {{ partial "card/card-description.html" . }}
             <div class="author">Published by <a class="vcard author" href="{{ .Site.BaseURL }}" title=""><strong class="fn">{{ .Params.Author }}</strong></a> on 
                 <a href="{{ .Permalink }}">
-                    <time datetime="{{ .PublishDate.Format "2006-01-02T15:04:05-0700" }}">{{ .PublishDate.Format "January 2, 2006" }}</time>
+                    <time itemprop="datePublished" datetime="{{ .PublishDate.Format "2006-01-02T15:04:05-0700" }}" class="entry-date published">{{ .PublishDate.Format "January 2, 2006" }}</time>
                 </a>
+                <time itemprop="dateModified" datetime="{{ .Date.Format "2006-01-02T15:04:05-0700" }}" class="updated" style="display: none;">{{ .Date.Format "January 2, 2006" }}</time>
             </div>
         </div>
     </div>
