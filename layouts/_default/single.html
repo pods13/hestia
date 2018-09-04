@@ -14,19 +14,29 @@
           <div class="row">
               <div class="col-md-10 col-md-offset-1 text-center">
                   <h1 class="hestia-title">{{ .Title }}</h1>
-                  <div id="breadcrumbs-category">
-                    <span xmlns:v="http://rdf.data-vocabulary.org/#">
-                      {{$category := index .Params.categories 0}}
-                      {{$categoryUrl := $category | urlize }}
-                      <span typeof="v:Breadcrumb"><a href="{{ $.Site.BaseURL }}" rel="v:url" property="v:title">{{ .Site.Title }}</a></span> » 
-                      <span rel="v:child" typeof="v:Breadcrumb"><a href="/{{ $categoryUrl }}" title="{{ $category }}" rel="v:url" property="v:title">{{ $category }}</a></span> » 
-                      <span class="breadcrumb_last">{{ .Title }}</span>
-                    </span>
-                    <h4 class="author">Published by <a class="vcard author" href="{{ $.Site.BaseURL }}">
-                      <strong class="fn">{{ .Params.Author }}</strong></a> on 
-                      <time class="date updated published" datetime="{{ .PublishDate.Format "2006-01-02T15:04:05-0700" }}">{{ .PublishDate.Format "January 2, 2006" }}</time>
-                    </h4>
-                  </div>
+                  <ol class="breadcrumbs" vocab="http://schema.org/" typeof="BreadcrumbList">
+                    {{$category := index .Params.categories 0}}
+                    {{$categoryUrl := $category | urlize }}
+                    <li property="itemListElement" typeof="ListItem">
+                      <a property="item" typeof="WebPage" href="{{ $.Site.BaseURL }}">
+                        <span property="name">{{ .Site.Title }}</span></a>
+                      <meta property="position" content="1">
+                    </li>
+                    »
+                    <li property="itemListElement" typeof="ListItem">
+                      <a property="item" typeof="WebPage" href="/{{ $categoryUrl }}">
+                        <span property="name">{{ $category }}</span></a>
+                      <meta property="position" content="2">
+                    </li>»
+                    <li property="itemListElement" typeof="ListItem">
+                        <span property="name">{{ .Title }}</span></a>
+                      <meta property="position" content="3">
+                    </li>
+                  </ol>
+                  <h4 class="author">Published by <a class="vcard author" href="{{ $.Site.BaseURL }}">
+                    <strong class="fn">{{ .Params.Author }}</strong></a> on 
+                    <time class="date updated published" datetime="{{ .PublishDate.Format "2006-01-02T15:04:05-0700" }}">{{ .PublishDate.Format "January 2, 2006" }}</time>
+                  </h4>
               </div>
           </div>
       </div>

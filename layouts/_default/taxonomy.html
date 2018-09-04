@@ -10,13 +10,19 @@
 			<div class="container">
 					<div class="row">
 							<div class="col-md-10 col-md-offset-1 text-center">
-									<h1 class="hestia-title">{{ .Title }}</h1>
-									<p id="breadcrumbs-category">
-										<span xmlns:v="http://rdf.data-vocabulary.org/#">
-											<span typeof="v:Breadcrumb"><a href="{{ $.Site.BaseURL }}" rel="v:url" property="v:title">{{ .Site.Title }}</a> » 
-											<span class="breadcrumb_last">{{ .Title }}</span></span>
-										</span>
-									</p>
+								<h1 class="hestia-title">{{ .Title }}</h1>
+								<ol class="breadcrumbs" vocab="http://schema.org/" typeof="BreadcrumbList">
+									<li property="itemListElement" typeof="ListItem">
+								    	<a property="item" typeof="WebPage" href="{{ $.Site.BaseURL }}">
+								    		<span property="name">{{ .Site.Title }}</span>
+								    	</a>
+								    	<meta property="position" content="1">
+									</li> » 
+									<li property="itemListElement" typeof="ListItem">
+										<span property="name">{{ .Title }}</span></a>
+										<meta property="position" content="2">
+									</li>
+								</ol>
 							</div>
 					</div>
 			</div>
