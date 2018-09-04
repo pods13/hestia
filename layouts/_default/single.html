@@ -28,10 +28,7 @@
                         <span property="name">{{ $category }}</span></a>
                       <meta property="position" content="2">
                     </li>»
-                    <li property="itemListElement" typeof="ListItem">
-                        <span property="name">{{ .Title }}</span></a>
-                      <meta property="position" content="3">
-                    </li>
+                    <li>{{ .Title }}</li>
                   </ol>
                   <h4 class="author">Published by <a class="author" href="{{ $.Site.BaseURL }}">
                     <strong class="fn" itemprop="author">{{ .Params.Author }}</strong></a> on 
