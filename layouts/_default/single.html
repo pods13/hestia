@@ -1,3 +1,6 @@
+{{- define "itemType" -}}
+"http://schema.org/Article"
+{{- end -}}
 {{- define "title" -}}
   {{ .Params.seoTitle | default .Title }}
 {{- end -}}
