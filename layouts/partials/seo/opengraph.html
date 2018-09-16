@@ -36,8 +36,10 @@
 	{{ with .Site.Social.facebook }}
 	<meta property="article:publisher" content="https://www.facebook.com/{{ . }}" />
 	{{ end }}
-	{{$section := index .Params.categories 0}}
-	<meta property="article:section" content="{{ $section }}" />
+	{{ if .Params.categories }}
+		{{$section := index .Params.categories 0}}
+		<meta property="article:section" content="{{ $section }}" />
+	{{ end }}
 	{{ with .Params.tags }}
 	{{ range first 6 . }}
 	  <meta property="article:tag" content="{{ . }}" />

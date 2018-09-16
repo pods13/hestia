@@ -21,7 +21,10 @@
 
 		{{ partial "seo/canonical.html" . }}
 
-		{{ partial "site-styles.html" }}
+		{{- block "styles" . -}}
+			{{ partial "site-styles.html" }}
+		{{- end -}}
+
 		{{- block "custom-styles" . -}}{{- end -}}
 
 		{{- block "favicon" . -}}
@@ -36,21 +39,23 @@
 	    {{ partial "google_adsense.html" . }}
 	</head>
 
-	<body class="{{ block "bodyClasses" . }}home page blog-post{{ end }}">
-		{{ block "body" . }}
-			<div class="wrapper">
-				<header class="header">
-					{{ partial "nav.html" . }}
-					{{ block "header" . }}{{ partial "site-header.html" .}}{{ end }}
-				</header>
-			</div>
-			<div class="main main-raised">
-				{{ block "main" . }}{{ end }}
-				{{ block "after-main" . }}{{ end }}
-				{{ block "footer" . }}{{ partial "site-footer.html" . }}{{ end }}
-			</div>
-		{{ end }}
-		{{ block "scripts" . }}{{ partial "site-scripts.html" . }}{{ end }}
-		{{ block "custom-scripts" . }}{{ end }}
-	</body>
+	{{ block "body" . }}
+		<body class="{{ block "bodyClasses" . }}home page blog-post{{ end }}">
+			{{ block "bodyInner" . }}
+				<div class="wrapper">
+					<header class="header">
+						{{ partial "nav.html" . }}
+						{{ block "header" . }}{{ partial "site-header.html" .}}{{ end }}
+					</header>
+				</div>
+				<div class="main main-raised">
+					{{ block "main" . }}{{ end }}
+					{{ block "after-main" . }}{{ end }}
+					{{ block "footer" . }}{{ partial "site-footer.html" . }}{{ end }}
+				</div>
+			{{ end }}
+			{{ block "scripts" . }}{{ partial "site-scripts.html" . }}{{ end }}
+			{{ block "custom-scripts" . }}{{ end }}
+		</body>
+	{{ end }}
 </html>
